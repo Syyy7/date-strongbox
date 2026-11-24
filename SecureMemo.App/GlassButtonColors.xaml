@@ -1,0 +1,63 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <LinearGradientBrush x:Key="ActionRim" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#F6FFFFFF"/><GradientStop Color="#627B8AA5" Offset=".46"/><GradientStop Color="#CAFFFFFF" Offset="1"/></LinearGradientBrush>
+            <LinearGradientBrush x:Key="ButtonBackground" StartPoint="0,0" EndPoint="0.3,1">
+                <GradientStop Color="#DCFFFFFF"/><GradientStop Color="#9CCFE3E3" Offset="1"/>
+            </LinearGradientBrush>
+            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#EDFAFFFC"/>
+            <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#DEBCD4D4"/>
+            <StaticResource x:Key="ButtonBorderBrush" ResourceKey="ActionRim"/>
+            <StaticResource x:Key="ButtonBorderBrushPointerOver" ResourceKey="ActionRim"/>
+            <LinearGradientBrush x:Key="AccentButtonBackground" StartPoint="0,0" EndPoint="0.3,1">
+                <GradientStop Color="#18746D"/><GradientStop Color="#105654" Offset="1"/>
+            </LinearGradientBrush>
+            <SolidColorBrush x:Key="AccentButtonBackgroundPointerOver" Color="#17776F"/>
+            <SolidColorBrush x:Key="AccentButtonBackgroundPressed" Color="#104F50"/>
+            <SolidColorBrush x:Key="AccentButtonForeground" Color="#FFFFFF"/>
+            <StaticResource x:Key="AccentButtonForegroundPointerOver" ResourceKey="AccentButtonForeground"/>
+            <StaticResource x:Key="AccentButtonForegroundPressed" ResourceKey="AccentButtonForeground"/>
+            <StaticResource x:Key="AccentButtonBorderBrush" ResourceKey="ActionRim"/>
+            <StaticResource x:Key="AccentButtonBorderBrushPointerOver" ResourceKey="ActionRim"/>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Default">
+            <LinearGradientBrush x:Key="ActionRim" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#A7E6FFFF"/><GradientStop Color="#2B9FB8CE" Offset=".46"/><GradientStop Color="#6BADBCD6" Offset="1"/></LinearGradientBrush>
+            <LinearGradientBrush x:Key="ButtonBackground" StartPoint="0,0" EndPoint="0.3,1">
+                <GradientStop Color="#634C7079"/><GradientStop Color="#443B5067" Offset="1"/>
+            </LinearGradientBrush>
+            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#AF496772"/>
+            <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#B62C444E"/>
+            <StaticResource x:Key="ButtonBorderBrush" ResourceKey="ActionRim"/>
+            <StaticResource x:Key="ButtonBorderBrushPointerOver" ResourceKey="ActionRim"/>
+            <LinearGradientBrush x:Key="AccentButtonBackground" StartPoint="0,0" EndPoint="0.3,1">
+                <GradientStop Color="#BAF2DF"/><GradientStop Color="#81CDC4" Offset="1"/>
+            </LinearGradientBrush>
+            <SolidColorBrush x:Key="AccentButtonBackgroundPointerOver" Color="#CBF8E9"/>
+            <SolidColorBrush x:Key="AccentButtonBackgroundPressed" Color="#87C9C0"/>
+            <SolidColorBrush x:Key="AccentButtonForeground" Color="#103B39"/>
+            <StaticResource x:Key="AccentButtonForegroundPointerOver" ResourceKey="AccentButtonForeground"/>
+            <StaticResource x:Key="AccentButtonForegroundPressed" ResourceKey="AccentButtonForeground"/>
+            <StaticResource x:Key="AccentButtonBorderBrush" ResourceKey="ActionRim"/>
+            <StaticResource x:Key="AccentButtonBorderBrushPointerOver" ResourceKey="ActionRim"/>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="HighContrast">
+            <SolidColorBrush x:Key="ActionRim" Color="{ThemeResource SystemColorWindowTextColor}"/>
+            <SolidColorBrush x:Key="ButtonBackground" Color="{ThemeResource SystemColorButtonFaceColor}"/>
+            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="{ThemeResource SystemColorHighlightColor}"/>
+            <StaticResource x:Key="ButtonBackgroundPressed" ResourceKey="ButtonBackgroundPointerOver"/>
+            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="{ThemeResource SystemColorHighlightTextColor}"/>
+            <StaticResource x:Key="ButtonForegroundPressed" ResourceKey="ButtonForegroundPointerOver"/>
+            <SolidColorBrush x:Key="ButtonBorderBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+            <StaticResource x:Key="ButtonBorderBrushPointerOver" ResourceKey="ButtonBorderBrush"/>
+            <StaticResource x:Key="AccentButtonBackground" ResourceKey="ButtonBackgroundPointerOver"/>
+            <StaticResource x:Key="AccentButtonBackgroundPointerOver" ResourceKey="ButtonBackground"/>
+            <StaticResource x:Key="AccentButtonBackgroundPressed" ResourceKey="ButtonBackground"/>
+            <StaticResource x:Key="AccentButtonForeground" ResourceKey="ButtonForegroundPointerOver"/>
+            <StaticResource x:Key="AccentButtonForegroundPointerOver" ResourceKey="ButtonBorderBrush"/>
+            <StaticResource x:Key="AccentButtonForegroundPressed" ResourceKey="ButtonBorderBrush"/>
+            <StaticResource x:Key="AccentButtonBorderBrush" ResourceKey="ButtonBorderBrush"/>
+            <StaticResource x:Key="AccentButtonBorderBrushPointerOver" ResourceKey="ButtonBorderBrush"/>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>

@@ -1,0 +1,26 @@
+<ContentDialog x:Class="SecureMemo.App.IconEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:SecureMemo.App"
+    Title="记录图标" PrimaryButtonText="应用" CloseButtonText="取消" DefaultButton="Primary">
+    <StackPanel Spacing="14">
+        <StackPanel Orientation="Horizontal" Spacing="12">
+            <local:RecordBadge x:Name="Preview"/>
+            <TextBlock FontSize="{Binding Body, Source={StaticResource Appearance}, Mode=OneWay}" x:Name="PreviewTitle" VerticalAlignment="Center" MaxWidth="230" TextTrimming="CharacterEllipsis"/>
+        </StackPanel>
+        <ComboBox MinHeight="{Binding ButtonHeight, Source={StaticResource Appearance}, Mode=OneWay}" Padding="{Binding ButtonInset, Source={StaticResource Appearance}, Mode=OneWay}" FontSize="{Binding Body, Source={StaticResource Appearance}, Mode=OneWay}" x:Name="Symbols" Header="图标" HorizontalAlignment="Stretch" SelectionChanged="SymbolChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate x:DataType="local:IconChoice">
+                    <StackPanel Orientation="Horizontal" Spacing="10"><FontIcon FontSize="16" Glyph="{x:Bind Glyph}"/><TextBlock FontSize="{Binding Body, Source={StaticResource Appearance}, Mode=OneWay}" Text="{x:Bind Label}"/></StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <StackPanel Orientation="Horizontal" Spacing="8">
+            <DropDownButton Style="{StaticResource GlassDropDownButton}" MinHeight="{Binding ButtonHeight, Source={StaticResource Appearance}, Mode=OneWay}" Padding="{Binding ButtonInset, Source={StaticResource Appearance}, Mode=OneWay}" FontSize="{Binding Body, Source={StaticResource Appearance}, Mode=OneWay}" x:Name="ColorButton" Content="图标颜色"><DropDownButton.Flyout><Flyout>
+                <ColorPicker x:Name="Colors" IsAlphaEnabled="False" IsColorPreviewVisible="False" ColorChanged="ColorChanged"/>
+            </Flyout></DropDownButton.Flyout></DropDownButton>
+            <Button Style="{StaticResource GlassButton}" MinHeight="{Binding ButtonHeight, Source={StaticResource Appearance}, Mode=OneWay}" Padding="{Binding ButtonInset, Source={StaticResource Appearance}, Mode=OneWay}" FontSize="{Binding Body, Source={StaticResource Appearance}, Mode=OneWay}" Content="导入图片…" Click="ImportClick"/>
+        </StackPanel>
+        <Button Style="{StaticResource GlassQuietButton}" MinHeight="{Binding ButtonHeight, Source={StaticResource Appearance}, Mode=OneWay}" Padding="{Binding ButtonInset, Source={StaticResource Appearance}, Mode=OneWay}" FontSize="{Binding Body, Source={StaticResource Appearance}, Mode=OneWay}" Content="恢复默认图标和颜色" Click="ResetClick"/>
+        <TextBlock FontSize="{Binding Body, Source={StaticResource Appearance}, Mode=OneWay}" x:Name="Error" Visibility="Collapsed" TextWrapping="Wrap" Foreground="{ThemeResource SystemFillColorCriticalBrush}"/>
+    </StackPanel>
+</ContentDialog>

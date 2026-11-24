@@ -1,0 +1,37 @@
+# 本机工具、依赖和构建输出
+/.packages/
+/.build-cache/
+.vs/
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+artifacts/
+publish/
+TestResults/
+*.user
+*.suo
+*.rsuser
+*.pdb
+*.dll
+*.exe
+*.binlog
+*.dmp
+*.log
+*.tmp
+*.nupkg
+*.msix
+*.msixbundle
+
+# 本机保险库、导出备份及密钥文件
+vault.json
+vault.json.*
+*.smbak
+*.smbak.*
+*.pfx
+*.p12
+*.pem
+*.key
+*.reg
+.env
+.env.*

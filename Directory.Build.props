@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <RestorePackagesPath>$(MSBuildThisFileDirectory).packages</RestorePackagesPath>
+    <RestoreAdditionalProjectFallbackFolders>$(RestoreAdditionalProjectFallbackFolders);$(UserProfile)\.nuget\packages</RestoreAdditionalProjectFallbackFolders>
+  </PropertyGroup>
+</Project>

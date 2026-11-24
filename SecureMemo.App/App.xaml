@@ -1,0 +1,109 @@
+<Application x:Class="SecureMemo.App.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:SecureMemo.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries><XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/></ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <LinearGradientBrush x:Key="WindowWash" StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#CEF0EA" Offset="0"/>
+                        <GradientStop Color="#E2EDF9" Offset="0.44"/>
+                        <GradientStop Color="#C4CDED" Offset="0.7"/>
+                        <GradientStop Color="#E8DEEA" Offset="1"/>
+                    </LinearGradientBrush>
+                    <RadialGradientBrush x:Key="AmbientLight" Center=".25,.2" RadiusX=".75" RadiusY=".8">
+                        <GradientStop Color="#A8FFFFEF"/><GradientStop Color="#00FFFFEF" Offset="1"/>
+                    </RadialGradientBrush>
+                    <AcrylicBrush x:Key="GlassSurface" TintColor="#F8FBFF" TintOpacity=".46" TintLuminosityOpacity=".46" FallbackColor="#ECF2F7"/>
+                    <SolidColorBrush x:Key="GlassField" Color="#91FFFFFF"/>
+                    <SolidColorBrush x:Key="GlassContent" Color="#6EFFFFFF"/>
+                    <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="#B0FFFFFF"/>
+                    <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="#DAFFFFFF"/>
+                    <LinearGradientBrush x:Key="GlassRim" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#F6FFFFFF"/><GradientStop Color="#627B8AA5" Offset=".46"/><GradientStop Color="#CAFFFFFF" Offset="1"/></LinearGradientBrush>
+
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Default">
+                    <LinearGradientBrush x:Key="WindowWash" StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#123C42" Offset="0"/>
+                        <GradientStop Color="#182D49" Offset="0.44"/>
+                        <GradientStop Color="#343252" Offset="0.7"/>
+                        <GradientStop Color="#192630" Offset="1"/>
+                    </LinearGradientBrush>
+                    <RadialGradientBrush x:Key="AmbientLight" Center=".25,.2" RadiusX=".75" RadiusY=".8">
+                        <GradientStop Color="#783D9DA3"/><GradientStop Color="#003D9DA3" Offset="1"/>
+                    </RadialGradientBrush>
+                    <AcrylicBrush x:Key="GlassSurface" TintColor="#263841" TintOpacity=".46" TintLuminosityOpacity=".46" FallbackColor="#253740"/>
+                    <SolidColorBrush x:Key="GlassField" Color="#610E1C2D"/>
+                    <SolidColorBrush x:Key="GlassContent" Color="#67304554"/>
+                    <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="#84415365"/>
+                    <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="#BB112436"/>
+                    <LinearGradientBrush x:Key="GlassRim" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#A7E6FFFF"/><GradientStop Color="#2B9FB8CE" Offset=".46"/><GradientStop Color="#6BADBCD6" Offset="1"/></LinearGradientBrush>
+
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="HighContrast">
+                    <SolidColorBrush x:Key="WindowWash" Color="{ThemeResource SystemColorWindowColor}"/>
+                    <SolidColorBrush x:Key="AmbientLight" Color="Transparent"/>
+                    <SolidColorBrush x:Key="GlassSurface" Color="{ThemeResource SystemColorWindowColor}"/>
+                    <SolidColorBrush x:Key="GlassContent" Color="{ThemeResource SystemColorWindowColor}"/>
+                    <SolidColorBrush x:Key="GlassField" Color="{ThemeResource SystemColorWindowColor}"/>
+                    <SolidColorBrush x:Key="GlassRim" Color="{ThemeResource SystemColorWindowTextColor}"/>
+
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+            <local:AppearanceMetrics x:Key="Appearance"/>
+            <Style x:Key="GlassButton" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+                <Setter Property="CornerRadius" Value="13"/>
+                <Setter Property="UseSystemFocusVisuals" Value="True"/>
+            </Style>
+            <Style x:Key="GlassIconButton" TargetType="Button" BasedOn="{StaticResource GlassButton}">
+                <Setter Property="CornerRadius" Value="12"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+            <Style x:Key="GlassQuietButton" TargetType="Button" BasedOn="{StaticResource GlassButton}">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+            </Style>
+            <Style x:Key="GlassDeleteButton" TargetType="Button" BasedOn="{StaticResource GlassButton}">
+                <Setter Property="Foreground" Value="{ThemeResource SystemFillColorCriticalBrush}"/>
+            </Style>
+            <Style x:Key="GlassPrimaryButton" TargetType="Button" BasedOn="{StaticResource AccentButtonStyle}">
+                <Setter Property="CornerRadius" Value="18"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="MinWidth" Value="76"/>
+                <Setter Property="UseSystemFocusVisuals" Value="True"/>
+            </Style>
+            <Style x:Key="GlassDropDownButton" TargetType="DropDownButton">
+                <Setter Property="Background" Value="{ThemeResource ButtonBackground}"/>
+                <Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderBrush}"/>
+                <Setter Property="CornerRadius" Value="13"/>
+            </Style>
+            <Style x:Key="GlassPanel" TargetType="Border">
+                <Setter Property="Background" Value="{ThemeResource GlassSurface}"/>
+                <Setter Property="BorderBrush" Value="{ThemeResource GlassRim}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="28"/>
+                <Setter Property="Padding" Value="28"/>
+            </Style>
+            <Style x:Key="FieldGroup" TargetType="Border" BasedOn="{StaticResource GlassPanel}">
+                <Setter Property="Background" Value="{ThemeResource GlassContent}"/>
+                <Setter Property="CornerRadius" Value="18"/>
+                <Setter Property="Padding" Value="18"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Background" Value="{ThemeResource GlassField}"/>
+                <Setter Property="BorderBrush" Value="{ThemeResource GlassRim}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="13"/>
+                <Setter Property="MinHeight" Value="40"/>
+                <Setter Property="Padding" Value="12,8"/>
+            </Style>
+            <Style TargetType="PasswordBox">
+                <Setter Property="Background" Value="{ThemeResource GlassField}"/>
+                <Setter Property="BorderBrush" Value="{ThemeResource GlassRim}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="CornerRadius" Value="13"/>
+                <Setter Property="MinHeight" Value="40"/>
+                <Setter Property="Padding" Value="12,8"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,11 @@
+<UserControl x:Class="SecureMemo.App.RecordBadge"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Width="{Binding BadgeSide, Source={StaticResource Appearance}, Mode=OneWay}" Height="{Binding BadgeSide, Source={StaticResource Appearance}, Mode=OneWay}">
+    <Border Background="{x:Bind Appearance.Background, Mode=OneWay}" CornerRadius="10">
+        <Grid>
+            <FontIcon Glyph="{x:Bind Appearance.Glyph, Mode=OneWay}" Foreground="{x:Bind Appearance.Foreground, Mode=OneWay}"
+                      Visibility="{x:Bind Appearance.SymbolVisibility, Mode=OneWay}" FontSize="{Binding IconSize, Source={StaticResource Appearance}, Mode=OneWay}"/>
+            <Image Margin="5" Source="{x:Bind Appearance.Image, Mode=OneWay}" Stretch="Uniform"/>
+        </Grid>
+    </Border>
+</UserControl>

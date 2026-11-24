@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SecureMemo.App/SecureMemo.App.csproj" />
+  <Project Path="SecureMemo.Core/SecureMemo.Core.csproj" />
+</Solution>
