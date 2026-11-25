@@ -20,8 +20,9 @@
   </ItemGroup>
   <Target Name="IncludeCompiledWinUIResources" BeforeTargets="ComputeFilesToPublish">
     <ItemGroup>
-      <ResolvedFileToPublish Include="$(TargetDir)**\*.xbf;$(TargetDir)$(AssemblyName).pri">
-        <RelativePath>%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
+      <_CompiledWinUIResource Include="$(TargetDir)**\*.xbf;$(TargetDir)$(AssemblyName).pri" />
+      <ResolvedFileToPublish Include="@(_CompiledWinUIResource)">
+        <RelativePath>%(_CompiledWinUIResource.RecursiveDir)%(_CompiledWinUIResource.Filename)%(_CompiledWinUIResource.Extension)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </ResolvedFileToPublish>
     </ItemGroup>
