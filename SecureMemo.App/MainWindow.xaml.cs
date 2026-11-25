@@ -56,6 +56,13 @@ public sealed partial class MainWindow : Window
     {
         this.openStore = openStore;
         InitializeComponent();
+        Pass.Editor.KeyDown += GateKey;
+        Confirm.Editor.KeyDown += GateKey;
+        Secret.Editor.PasswordChanged += PasswordEdited;
+        Activated += (_, e) =>
+        {
+            if (e.WindowActivationState == WindowActivationState.Deactivated) HoldPasswordField.HideActive();
+        };
         GateError.RegisterPropertyChangedCallback(TextBlock.TextProperty, (_, _) =>
             GateError.Visibility = Show(!string.IsNullOrEmpty(GateError.Text)));
         Root.AddHandler(UIElement.PointerMovedEvent, new PointerEventHandler(UpdateGlassLight), true);
@@ -129,7 +136,7 @@ public sealed partial class MainWindow : Window
     private void OpenSettings(object sender, RoutedEventArgs e)
     {
         if (unlocking) return;
-        SetPasswordVisible(false);
+        HoldPasswordField.HideActive();
         Settings.Configure(InWorkspace && session != null, Root.ActualWidth);
         MainContent.Visibility = Visibility.Collapsed;
         Settings.Visibility = Visibility.Visible;
@@ -157,7 +164,7 @@ public sealed partial class MainWindow : Window
         Confirm.Visibility = Show(create);
         Pass.Visibility = Visibility.Visible;
         Pass.Password = Confirm.Password = GateError.Text = "";
-        Pass.Focus(FocusState.Programmatic);
+        Pass.Editor.Focus(FocusState.Programmatic);
     }
 
     private async void GateKey(object sender, KeyRoutedEventArgs e)
@@ -199,7 +206,7 @@ public sealed partial class MainWindow : Window
             unlocking = false;
             GateSettings.IsEnabled = Enter.IsEnabled = Pass.IsEnabled = Confirm.IsEnabled = true;
             Progress.Visibility = Visibility.Collapsed;
-            if (!InWorkspace) Pass.Focus(FocusState.Programmatic);
+            if (!InWorkspace) Pass.Editor.Focus(FocusState.Programmatic);
         }
     }
 
@@ -224,7 +231,7 @@ public sealed partial class MainWindow : Window
     private void Display(RecordRow? row)
     {
         binding = true; selected = row;
-        SetPasswordVisible(false);
+        HoldPasswordField.HideActive();
         EditorBadge.Appearance = row?.Appearance;
         var m = row?.Entry;
         Editor.Visibility = SaveButton.Visibility = Show(m != null);
@@ -263,7 +270,7 @@ public sealed partial class MainWindow : Window
     private void SelectionChanged(object sender, SelectionChangedEventArgs e)
     { if (!binding) Display(Records.SelectedItem as RecordRow); }
     private void RecordClick(object sender, ItemClickEventArgs e) { narrowDetail = true; Adapt(); }
-    private void BackClick(object sender, RoutedEventArgs e) { SetPasswordVisible(false); narrowDetail = false; Adapt(); }
+    private void BackClick(object sender, RoutedEventArgs e) { HoldPasswordField.HideActive(); narrowDetail = false; Adapt(); }
     private void LayoutChanged(object sender, SizeChangedEventArgs e) => Adapt();
     private void Adapt()
     {
@@ -371,6 +378,7 @@ public sealed partial class MainWindow : Window
 
     private void Lock()
     {
+        HoldPasswordField.HideActive();
         if (session == null) return;
         Workspace.Visibility = Visibility.Collapsed;
         dialog?.Hide(); saveTimer.Stop(); idleTimer.Stop(); ClearClipboard();
@@ -446,7 +454,7 @@ public sealed partial class MainWindow : Window
     {
         var type = (AppearanceMetrics)Application.Current.Resources["Appearance"];
         var panel = new StackPanel { Spacing = 12 };
-        PasswordBox Field(string name) => new() { Header = name, FontSize = type.Body, PasswordRevealMode = PasswordRevealMode.Peek };
+        HoldPasswordField Field(string name) => new() { Header = name };
         var current = Field(changing ? "当前密码" : "备份密码");
         panel.Children.Add(current);
         var next = Field("新密码");
@@ -459,6 +467,7 @@ public sealed partial class MainWindow : Window
             XamlRoot = Root.XamlRoot, RequestedTheme = Root.RequestedTheme, PrimaryButtonText = changing ? "修改密码" : "导入",
             CloseButtonText = "取消", DefaultButton = ContentDialogButton.Primary };
         StyleDialog(prompt);
+        prompt.Closing += (_, _) => HoldPasswordField.HideActive();
         prompt.PrimaryButtonClick += (_, args) =>
         {
             if (current.Password.Length != 0 && (!changing || (next.Password.Length != 0 && next.Password == repeat.Password))) return;
@@ -473,15 +482,6 @@ public sealed partial class MainWindow : Window
         }
         finally { current.Password = next.Password = repeat.Password = ""; dialog = null; }
     }
-
-    private void SetPasswordVisible(bool visible)
-    {
-        Secret.PasswordRevealMode = visible ? PasswordRevealMode.Visible : PasswordRevealMode.Hidden;
-        Reveal.Content = visible ? "隐藏" : "查看";
-        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(Reveal, visible ? "隐藏密码" : "查看密码");
-    }
-    private void RevealClick(object sender, RoutedEventArgs e) =>
-        SetPasswordVisible(Secret.PasswordRevealMode != PasswordRevealMode.Visible);
 
     private void CopyClick(object sender, RoutedEventArgs e)
     {

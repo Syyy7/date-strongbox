@@ -30,8 +30,8 @@
               <TextBlock FontSize="{Binding Body, Source={StaticResource Appearance}, Mode=OneWay}" x:Name="GateHint" TextAlignment="Center" TextWrapping="Wrap" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
             </StackPanel>
             <StackPanel Spacing="12">
-              <PasswordBox MinHeight="{Binding FieldHeight, Source={StaticResource Appearance}, Mode=OneWay}" Padding="{Binding FieldInset, Source={StaticResource Appearance}, Mode=OneWay}" FontSize="{Binding Body, Source={StaticResource Appearance}, Mode=OneWay}" x:Name="Pass" Header="保险库密码" PasswordRevealMode="Peek" KeyDown="GateKey"/>
-              <PasswordBox MinHeight="{Binding FieldHeight, Source={StaticResource Appearance}, Mode=OneWay}" Padding="{Binding FieldInset, Source={StaticResource Appearance}, Mode=OneWay}" FontSize="{Binding Body, Source={StaticResource Appearance}, Mode=OneWay}" x:Name="Confirm" Header="确认密码" PasswordRevealMode="Peek" KeyDown="GateKey"/>
+              <local:HoldPasswordField x:Name="Pass" Header="保险库密码"/>
+              <local:HoldPasswordField x:Name="Confirm" Header="确认密码"/>
             </StackPanel>
             <Button Style="{StaticResource GlassPrimaryButton}" MinHeight="{Binding ButtonHeight, Source={StaticResource Appearance}, Mode=OneWay}" Padding="{Binding ButtonInset, Source={StaticResource Appearance}, Mode=OneWay}" FontSize="{Binding Body, Source={StaticResource Appearance}, Mode=OneWay}" x:Name="Enter" Content="解锁" HorizontalAlignment="Stretch" Click="EnterClick"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8">
@@ -101,9 +101,8 @@
                 </Grid>
                 <TextBox MinHeight="{Binding FieldHeight, Source={StaticResource Appearance}, Mode=OneWay}" Padding="{Binding FieldInset, Source={StaticResource Appearance}, Mode=OneWay}" FontSize="{Binding Body, Source={StaticResource Appearance}, Mode=OneWay}" x:Name="Site" Header="网站" TextChanged="FieldChanged"/>
                 <Grid ColumnSpacing="8" RowSpacing="4"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                  <PasswordBox MinHeight="{Binding FieldHeight, Source={StaticResource Appearance}, Mode=OneWay}" Padding="{Binding FieldInset, Source={StaticResource Appearance}, Mode=OneWay}" FontSize="{Binding Body, Source={StaticResource Appearance}, Mode=OneWay}" x:Name="Secret" Header="密码" PasswordRevealMode="Hidden" PasswordChanged="PasswordEdited"/>
+                  <local:HoldPasswordField x:Name="Secret" Header="密码"/>
                   <StackPanel x:Name="PasswordActions" Grid.Column="1" Orientation="Horizontal" Spacing="6" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                  <Button Style="{StaticResource GlassButton}" MinHeight="{Binding ButtonHeight, Source={StaticResource Appearance}, Mode=OneWay}" Padding="{Binding ButtonInset, Source={StaticResource Appearance}, Mode=OneWay}" FontSize="{Binding Body, Source={StaticResource Appearance}, Mode=OneWay}" x:Name="Reveal" VerticalAlignment="Bottom" Content="查看" AutomationProperties.Name="查看密码" Click="RevealClick"/>
                   <Button Style="{StaticResource GlassIconButton}" MinHeight="{Binding ButtonHeight, Source={StaticResource Appearance}, Mode=OneWay}" Width="{Binding ButtonHeight, Source={StaticResource Appearance}, Mode=OneWay}" FontSize="{Binding Body, Source={StaticResource Appearance}, Mode=OneWay}" VerticalAlignment="Bottom" Click="CopyClick" AutomationProperties.Name="复制密码" ToolTipService.ToolTip="复制密码"><FontIcon Glyph="&#xE8C8;" FontSize="16"/></Button></StackPanel>
                 </Grid>
               </StackPanel></Border>
